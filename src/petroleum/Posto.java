@@ -129,5 +129,9 @@ public class Posto {
 	 */
 	public void laborar() {
 		// TODO fazer este método
+		setQuantidadeAtual(quantidadeAtual-getGastoMedio());
+
+		if(!temPedidoPendente())
+			laborar();
 	}
 }
