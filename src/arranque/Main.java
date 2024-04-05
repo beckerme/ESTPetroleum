@@ -52,10 +52,10 @@ public class Main {
 		c.adicionarPosto(posto13);
 		c.adicionarPosto(posto14);
 		c.adicionarPosto(posto15);
-		/*c.adicionarPosto(posto3);
+		/*c.adicionarPosto(posto3);dddddddd
 		c.adicionarPosto(posto3);
 		c.adicionarPosto(posto3);
-		c.adicionarPosto(posto3); jdksdj dsjkdjsk
+		c.adicionarPosto(posto3);
 		c.adicionarPosto(posto3);*/
 		// TODO criar os camiões
 		
