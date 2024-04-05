@@ -26,7 +26,6 @@ public class Paragem {
     }
 
     public void setnLitros(int nLitros) {
-    // hsajhsja hsajsh shajh
         this.nLitros = nLitros;
     }
 }
