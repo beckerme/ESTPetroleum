@@ -1,12 +1,16 @@
 package petroleum;
 
 import java.awt.Point;
+import java.util.*;
 
 /** Um itinerário é um conjunto de paragens.<br>
  * O itinerário assume que o ponto de início é sempre o mesmo e,
  * no final, deve retornar sempre ao local de início.
  */
 public class Itinerario {
+	private List<Paragem> paragens;
+
+	private Point inicio;
 
 	/** retorna o ponto de inicio do itenerário
 	 * @return o ponto de inicio do itenerário

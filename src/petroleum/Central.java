@@ -23,16 +23,18 @@ public class Central {
 
 	private Point posicaoCentral;
 
-	private ArrayList<Posto> postos;
+	private final ArrayList<Posto> postos;
+
+	public Central() {
+		postos = new ArrayList<>();
+	}
 
 	public Central(Point posicaoCentral){
 		this.posicaoCentral = posicaoCentral;
 		this.postos = new ArrayList<>(); // Inicializa a lista de postos
 	}
 
-	public Point getPosicaoCentral() {
-		return posicaoCentral;
-	}
+
 
 	/** retorna o camião associado a uma matricula
 	 * @param matricula matrícula a pesquisar matricula
@@ -96,5 +98,9 @@ public class Central {
 	 */
 	private void processarGastosPostos() {
 		// TODO fazer este método
+	}
+
+	public Point getPosicaoCentral() {
+		return this.posicaoCentral;
 	}
 }

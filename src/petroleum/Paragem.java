@@ -5,7 +5,7 @@ package petroleum;
  * devem ser transferidos para o posto  
  */
 public class Paragem {
-    private  Posto posto;
+    private Posto posto;
     private int nLitros;
 
     public Paragem(Posto posto, int nLitros) {
@@ -13,19 +13,5 @@ public class Paragem {
         this.nLitros = nLitros;
     }
 
-    public Posto getPosto() {
-        return posto;
-    }
 
-    public void setPosto(Posto posto) {
-        this.posto = posto;
-    }
-
-    public int getnLitros() {
-        return nLitros;
-    }
-
-    public void setnLitros(int nLitros) {
-        this.nLitros = nLitros;
-    }
 }
