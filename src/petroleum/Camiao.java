@@ -1,5 +1,7 @@
 package petroleum;
 import java.awt.Point;
+import petroleum.Central.*;
+
 
 import menu.Mapa;
 
@@ -14,7 +16,42 @@ public class Camiao {
 	/** o tempo máximo de um turno, que são as 14 horas
 	 * (2 condutores), dadas em segundos */
 	public static final int TEMPO_TURNO = 14 * 3600;
-	
+	private String matricula;
+	private int capacidade, velocidade, debito, quantidadeAtual;
+
+	Itinerario iti;
+
+	public Camiao(String matricula, int capacidade, int velocidade, int debito, int quantidadeAtual) {
+		this.matricula = matricula;
+		this.capacidade = capacidade;
+		this.velocidade = velocidade;
+		this.debito = debito;
+		this.quantidadeAtual = quantidadeAtual;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+	public int getQuantidadeAtual() {
+		return quantidadeAtual;
+	}
+
+	public void setQuantidadeAtual(int quantidadeAtual) {
+		this.quantidadeAtual = quantidadeAtual;
+	}
+
+	public int getCapacidade() {
+		return capacidade;
+	}
+
+	public int getVelocidade() {
+		return velocidade;
+	}
+
+	public int getDebito() {
+		return debito;
+	}
+
 	/** indica se o Camião pode acrescentar o seguinte pedido ao seu itinerário
 	 * @param posto posto que pede o abastecimento
 	 * @param litros litros que o posto pretende
@@ -26,6 +63,13 @@ public class Camiao {
 	 */
 	public int podeFazerPedido(Posto posto, int litros) {
 		// TODO implementar este método
+		if(litros>getQuantidadeAtual()){
+			return Central.EXCEDE_CAPACIDADE_CAMIAO;
+		
+		} else if ((duracaoTurno()<tempoPercorrer(new Central().getPosicaoCentral(),posto.getPosicaoPosto()))){
+			return Central.EXCEDE_TEMPO_TURNO;
+		}
+
 		return Central.ACEITE;
 	}
 	
@@ -39,6 +83,8 @@ public class Camiao {
 	 */
 	public int addPosto( Posto p, int litros ) {
 		// TODO fazer este método
+
+
 		return Central.ACEITE;
 	}
 
@@ -76,7 +122,7 @@ public class Camiao {
 	 */
 	private double tempoPercorrer( Point ini, Point fim ){
 		// TODO terminar este método (distância / velocidade)
-		return Mapa.distancia(ini, fim);
+		return Mapa.distancia(ini, fim)/this.velocidade;
 	}
 	
 	/** retorna quanto tempo demora, em segundos, a transferir a quantidade de liquido
@@ -84,16 +130,16 @@ public class Camiao {
 	 * @return o tempo que demora, em segundos, a transferir os nLitros
 	 */
 	private double tempoDespejar( int nLitros ){
-		// TODO fazer este método
-		return 0;
+		// TODO ZFEITO fazer este método
+		return ((double)nLitros/this.debito);
 	}
 	
 	/** retorna a percentagem de ocupação do camião, entre 0 (0%) e 1 (100%)
 	 * @return a percentagem de ocupação 
 	 */
 	public float percentagemOcupacao() {
-		// TODO fazer este método
-		return 0;
+		// TODO ZFEITO fazer este método
+		return (float)(this.quantidadeAtual/100.0);
 	}
 	
 	/** retorna a capacidade livre, isto é, quantos litros ainda pode
@@ -101,7 +147,7 @@ public class Camiao {
 	 * @return a capacidade livre, em litros
 	 */
 	public int capacidadeLivre() {
-		// TODO fazer este método
-		return 0;
+		// TODO ZFEITO fazer este método
+		return this.capacidade-this.quantidadeAtual;
 	}
 }

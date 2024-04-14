@@ -79,7 +79,7 @@ public class MarcadorPosto {
 		if( escolhido )
 			destino.paintIcon(null, g, area.x, area.y-destino.getIconHeight());
 		
-		// TODO colocar a informação na variável
+		// TODO ZFEITO colocar a informação na variável
 		float percentagemOcupacao = posto.percentagemOcupacao();
 		ImageIcon icon;
 		// ver qual o icon a usar, de acordo com a percentagem de ocupação
@@ -91,8 +91,8 @@ public class MarcadorPosto {
 			icon = postoVermelho;
 		icon.paintIcon(null, g, area.x, area.y);
 		
-		// TODO ver se posto tem pedido pendente
-		if( false )
+		// TODO ZFEITO ver se posto tem pedido pendente
+		if( posto.temPedidoPendente() )
 			pedindo.paintIcon(null, g, area.x, area.y);
 	}
 	

@@ -9,7 +9,7 @@ import petroleum.Posto;
  * É ainda responsável por controlar todos os elemenots e operações
  */
 public class Central {
-	// constantes para os erros que podem surgir udurante a realização das operações
+	// constantes para os erros que podem surgir durante a realização das operações
 	/** Correu tudo bem com a operação */
 	public static final int ACEITE = 0;
 	/** Usada quando se pretende adicionar um pedido a um posto, mas este não precisa */
@@ -23,18 +23,12 @@ public class Central {
 
 	private Point posicaoCentral;
 
-	private final ArrayList<Posto> postos;
+	private final ArrayList<Posto> postos = new ArrayList<>();
 
-	public Central() {
-		postos = new ArrayList<>();
+	public Central(){
+		this.posicaoCentral = new Point(505, 750);
 	}
-
-	public Central(Point posicaoCentral){
-		this.posicaoCentral = posicaoCentral;
-		this.postos = new ArrayList<>(); // Inicializa a lista de postos
-	}
-
-
+	
 
 	/** retorna o camião associado a uma matricula
 	 * @param matricula matrícula a pesquisar matricula

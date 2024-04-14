@@ -12,7 +12,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO criar a central requerida
-		Central c = new Central(new Point(505, 750));
+		Central c = new Central();
 		
 		// TODO criar os postos
 		//public Posto(int id, int gastoMedio, int quantidadeAtual, int capacidadeTotal, String nomePosto, Point posicaoPosto) {

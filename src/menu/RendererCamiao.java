@@ -63,13 +63,13 @@ public class RendererCamiao implements ListCellRenderer<Camiao> {
 	 */
 	private void desenharInfo(Graphics g) {
 		// TODO colocar os valores corretos nas variáveis
-		int quantidade = 25000;
-		int capacidadeLivre = 5000;
-		int velocidadeMedia = 60;
-		float percentOcupacao = 0.65f;
+		int quantidade = camiao.getCapacidade();
+		int capacidadeLivre = camiao.capacidadeLivre();
+		int velocidadeMedia = camiao.getVelocidade();
+		float percentOcupacao = camiao.percentagemOcupacao();
 		// duraçao do turno em horas e minutos
-		int duracaoHoras = 10;
-		int duracaoMinutos = 30;
+		int duracaoHoras = (int)(camiao.duracaoTurno()/3600);
+		int duracaoMinutos = (int) ((camiao.duracaoTurno()%3600)/60);
 		
 		// apresentar as infos
 		int numPixeis = (int)(percentOcupacao * PIXEIS_TANQUE);
@@ -91,7 +91,7 @@ public class RendererCamiao implements ListCellRenderer<Camiao> {
 		camiao = value;
 		
 		// TODO colocar a informação nas variáveis
-		String matricula = "AA-00-AA";
+		String matricula = camiao.getMatricula();
 		
 		((TitledBorder)painel.getBorder()).setTitle( matricula );
 		((TitledBorder)painel.getBorder()).setTitleColor( isSelected? Color.BLUE: Color.BLACK);
