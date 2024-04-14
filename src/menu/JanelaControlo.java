@@ -105,8 +105,8 @@ public class JanelaControlo extends JFrame {
 		// desenhar o itinerário num ambiente especial (por causa das linhas)
 		Graphics2D ge = (Graphics2D)g.create();
 
-		// TODO ver o itinerário (não criar um novo como aqui)
-		Itinerario iti = new Itinerario();
+		// TODO ZFEITO ver o itinerário (não criar um novo como aqui)
+		/*Itinerario iti = camiaoSel.getItinerario();
 		Point p1 = iti.getInicio();  // começa no início
 		// TODO para cada ponto desenhar uma linha entre esse e o anterior
 		// p1 é sempre o anterior, p2 é sempre o atual
@@ -116,7 +116,7 @@ public class JanelaControlo extends JFrame {
 			p1 = p2;
 		}
 		Point p2 = iti.getInicio(); // e acaba no início
-		desenhaLinha( ge, p1,  p2 );
+		desenhaLinha( ge, p1,  p2 );*/
 		ge.dispose();
 	}
 
@@ -236,8 +236,11 @@ public class JanelaControlo extends JFrame {
 		
 		// criar a lista de camiões
 		// TODO: Adicionar cada camião à lista (ciclo?)
-		Camiao c = null; 
-		modelo.addElement( c );
+		for (Camiao camiao : central.getCamioes()) {
+			modelo.addElement(camiao);
+		}
+		/*Camiao c = null;
+		modelo.addElement( c );*/
 		
 		listaCamioes = new JList<Camiao>( modelo);
 		listaCamioes.setPreferredSize( new Dimension(140, 50) );

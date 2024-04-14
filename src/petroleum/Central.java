@@ -2,6 +2,8 @@ package petroleum;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
+
 import petroleum.Posto;
 
 /** Classe que representa a central de distribuição de combústivel.
@@ -23,12 +25,13 @@ public class Central {
 
 	private Point posicaoCentral;
 
-	private final ArrayList<Posto> postos = new ArrayList<>();
+	private List<Posto> postos = new ArrayList<>();
+	private  List<Camiao> camioes = new ArrayList<>();
 
 	public Central(){
 		this.posicaoCentral = new Point(505, 750);
 	}
-	
+
 
 	/** retorna o camião associado a uma matricula
 	 * @param matricula matrícula a pesquisar matricula
@@ -36,6 +39,14 @@ public class Central {
 	 */
 	public Camiao getCamiao(String matricula ) {
 		// TODO fazer este método
+
+		// ciclo for each para todos os camioes
+		for(Camiao camiao : camioes ){
+			if(camiao.getMatricula().equals(matricula)){
+				
+				return camiao;
+			}
+		}
 		return null;
 	}
 	
@@ -45,15 +56,23 @@ public class Central {
 	 */
 	public Posto getPosto( int id ) {
 		// TODO fazer este método
-		return null;
+		return postos.get(id);
 	}
 
-	public ArrayList<Posto> getPostos() {
-		return postos;
+	public List<Posto> getPostos() {
+		return Collections.unmodifiableList(postos);
+	}
+
+	public List<Camiao> getCamioes(){
+		return Collections.unmodifiableList(camioes);
 	}
 
 	public void adicionarPosto(Posto posto) {
 		postos.add(posto);
+	}
+
+	public void adicionarCamiao(Camiao camioes){
+		this.camioes.add(camioes);
 	}
 
 	/** processa uma entrega, isto é, associa o pedido ao camião respetivo

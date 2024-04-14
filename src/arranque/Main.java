@@ -57,7 +57,17 @@ public class Main {
 		c.adicionarPosto(posto3);
 		c.adicionarPosto(posto3);
 		c.adicionarPosto(posto3);*/
+
 		// TODO criar os camiões
+
+		Camiao camiao1 = new Camiao("11-FG-33", 20000, 65, 20);
+		Camiao camiao2 = new Camiao("22-DV-22", 30000, 50, 30);
+		Camiao camiao3 = new Camiao("AA-34-BB", 35000, 70, 30);
+		Camiao camiao4 = new Camiao("CF-65-FC", 40000, 45, 40);
+		// Camiao camiaoNosso = new Camiao("11-FG-33", 20000, 65, 20);
+		c.adicionarCamiao(camiao1);
+		c.adicionarCamiao(camiao2);
+		c.adicionarCamiao(camiao3);
 		
 		// criar a apresentar a janela principal
 		JanelaControlo postosFrame = new JanelaControlo( c );

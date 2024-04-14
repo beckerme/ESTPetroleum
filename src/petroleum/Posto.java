@@ -117,7 +117,7 @@ public class Posto {
 	 */
 	public boolean temPedidoPendente() {
 		// TODO ZFEITO fazer este método
-        return percentagemOcupacao() < OCUPACAO_MINIMA || Math.random() < PROBABILIDADE_NOVO_PEDIDO;
+        return percentagemOcupacao() < OCUPACAO_MINIMA && Math.random() < PROBABILIDADE_NOVO_PEDIDO;
     }
 
 	/** Laborar do posto. O posto processa os gastos e verifica
@@ -129,5 +129,18 @@ public class Posto {
 
 		if(!temPedidoPendente())
 			laborar();
+	}
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Posto posto)) return false;
+        return getId() == posto.getId();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId());
 	}
 }

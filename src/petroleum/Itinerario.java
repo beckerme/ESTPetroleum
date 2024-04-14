@@ -13,14 +13,11 @@ import static menu.Mapa.distancia;
 public class Itinerario {
 
 	private ArrayList<Paragem> paragens = new ArrayList<Paragem>();
-	private Central central;
 
 	private Point inicio;
 
-	public Itinerario(Camiao c){
-
-		this.inicio = getInicio();
-
+	public Itinerario(){
+		this.inicio = new Point(505, 750);
 	}
 
 	public List<Paragem> getParagens() {
@@ -35,16 +32,16 @@ public class Itinerario {
 		paragens.remove(p);
 	}
 
-	public Central getCentral() {
+	/*public Central getCentral() {
 		return central;
-	}
+	}*/
 
 	/** retorna o ponto de inicio do itenerário
 	 * @return o ponto de inicio do itenerário
 	 */
 	public Point getInicio() {
 		// TODO ZFEITO fazer este método (não usar este valor assim)
-		return central.getPosicaoCentral();
+		return inicio;
 	}
 
 	/** limpa o itinerário, isto é, remove todas
