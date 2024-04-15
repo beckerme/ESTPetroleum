@@ -60,10 +60,10 @@ public class Main {
 
 		// TODO criar os camiões
 
-		Camiao camiao1 = new Camiao("11-FG-33", 20000, 65, 20);
-		Camiao camiao2 = new Camiao("22-DV-22", 30000, 50, 30);
-		Camiao camiao3 = new Camiao("AA-34-BB", 35000, 70, 30);
-		Camiao camiao4 = new Camiao("CF-65-FC", 40000, 45, 40);
+		Camiao camiao1 = new Camiao("11-FG-33", 20000, 65, 20,20000);
+		Camiao camiao2 = new Camiao("22-DV-22", 30000, 50, 30,30000);
+		Camiao camiao3 = new Camiao("AA-34-BB", 35000, 70, 30,35000);
+		Camiao camiao4 = new Camiao("CF-65-FC", 40000, 45, 40,35000);
 		// Camiao camiaoNosso = new Camiao("11-FG-33", 20000, 65, 20);
 		c.adicionarCamiao(camiao1);
 		c.adicionarCamiao(camiao2);

@@ -5,6 +5,9 @@ import java.util.*;
 import menu.Mapa.*;
 import petroleum.Posto.*;
 import static menu.Mapa.distancia;
+import menu.JanelaControlo.*;
+import petroleum.Central.*;
+
 
 /** Um itinerário é um conjunto de paragens.<br>
  * O itinerário assume que o ponto de início é sempre o mesmo e,
@@ -14,7 +17,7 @@ public class Itinerario {
 
 	private ArrayList<Paragem> paragens = new ArrayList<Paragem>();
 
-	private Point inicio;
+	private Point inicio;	
 
 	public Itinerario(){
 		this.inicio = new Point(505, 750);
@@ -32,16 +35,12 @@ public class Itinerario {
 		paragens.remove(p);
 	}
 
-	/*public Central getCentral() {
-		return central;
-	}*/
-
 	/** retorna o ponto de inicio do itenerário
 	 * @return o ponto de inicio do itenerário
 	 */
 	public Point getInicio() {
 		// TODO ZFEITO fazer este método (não usar este valor assim)
-		return inicio;
+		return this.inicio;
 	}
 
 	/** limpa o itinerário, isto é, remove todas

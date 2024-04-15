@@ -26,10 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import petroleum.Camiao;
-import petroleum.Central;
-import petroleum.Itinerario;
-import petroleum.Posto;
+import petroleum.*;
 
 /** Representa a janela principal da aplicação onde serão
  * desenhados o mapa, com os postos, e a lista dos camiões
@@ -67,13 +64,15 @@ public class JanelaControlo extends JFrame {
 	 * @param c a contral a ser gerida por esta janela
 	 */
 	public JanelaControlo( Central c ) {
+		// TODO ZFEITO criar os marcadores de posto, um para cada posto (ciclo?)
+
 		central = c;
 
 		for(Posto p: central.getPostos()){
 			MarcadorPosto mp = new MarcadorPosto(p);
 			marcadores.add( mp );
 		}
-		// TODO criar os marcadores de posto, um para cada posto (ciclo?)
+
 		//Posto p = null;
 		//MarcadorPosto mp = new MarcadorPosto(p);
 		// TODO adicionar o marcador à lista e descomentar a linha seguinte 
@@ -90,7 +89,7 @@ public class JanelaControlo extends JFrame {
 		// desenhar o mapa
 		mapa.paintIcon(painelDesenho, g, 0, 0);
 
-		// TODO ver a posição da central (não usar o valor direto, como está)
+		// TODO ZFEITO ver a posição da central (não usar o valor direto, como está)
 		Point pos = central.getPosicaoCentral();
 
 		// desenhar a central
@@ -106,17 +105,28 @@ public class JanelaControlo extends JFrame {
 		Graphics2D ge = (Graphics2D)g.create();
 
 		// TODO ZFEITO ver o itinerário (não criar um novo como aqui)
-		/*Itinerario iti = camiaoSel.getItinerario();
+		Itinerario iti = camiaoSel.getItinerario();
 		Point p1 = iti.getInicio();  // começa no início
+
 		// TODO para cada ponto desenhar uma linha entre esse e o anterior
 		// p1 é sempre o anterior, p2 é sempre o atual
-		for( int i=0; i < 0; i++ ){ // TODO usar o for correto
+/*		for( int i=0; i < 0; i++ ){ // TODO usar o for correto
 			Point p2 = null;        // TODO próximo ponto no itinerário
 			desenhaLinha(ge, p1, p2);
 			p1 = p2;
+		}*/
+
+		for(Paragem p: iti.getParagens()){			// TODO ZFEITO usar o for correto
+
+			Posto posto = p.getPosto();
+			Point p2 = posto.getPosicaoPosto();    // TODO ZFEITO próximo ponto no itinerário
+			desenhaLinha(ge, p1, p2);
+			p1 = p2;
+
 		}
+
 		Point p2 = iti.getInicio(); // e acaba no início
-		desenhaLinha( ge, p1,  p2 );*/
+		desenhaLinha( ge, p1,  p2 );
 		ge.dispose();
 	}
 
@@ -235,7 +245,7 @@ public class JanelaControlo extends JFrame {
 		DefaultListModel<Camiao> modelo = new DefaultListModel<Camiao>();
 		
 		// criar a lista de camiões
-		// TODO: Adicionar cada camião à lista (ciclo?)
+		// TODO ZFEITO: Adicionar cada camião à lista (ciclo?)
 		for (Camiao camiao : central.getCamioes()) {
 			modelo.addElement(camiao);
 		}

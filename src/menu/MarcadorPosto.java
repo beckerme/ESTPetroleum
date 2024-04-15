@@ -42,7 +42,7 @@ public class MarcadorPosto {
 	 */
 	public MarcadorPosto(Posto posto) {
 		this.posto = posto;
-		// TODO ver a posição do posto (não criar um novo como aqui)
+		// TODO ZFEITO ver a posição do posto (não criar um novo como aqui)
 		Point pos = posto.getPosicaoPosto();
 		
 		int offsetX = postoVerde.getIconWidth()/2;
@@ -56,7 +56,7 @@ public class MarcadorPosto {
 	public void desenhar( Graphics2D g ) {
 		// se for preciso mostrar a etiqueta
 		if( expandido ) {
-			// TODO colocar a informação correta nas seguintes variáveis
+			// TODO ZFEITO colocar a informação correta nas seguintes variáveis
 			String nome = posto.getNomePosto();
 			int id = posto.getId();
 			int capacidade = posto.getCapacidadeTotal();

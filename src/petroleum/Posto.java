@@ -25,13 +25,20 @@ public class Posto {
 	private int id, gastoMedio, quantidadeAtual, capacidadeTotal;
 	private String nomePosto;
 	private Point posicaoPosto;
+	
+	boolean pedidoPendente;
 
 	public Posto(int id, int gastoMedio, int quantidadeAtual, int capacidadeTotal, String nomePosto, Point posicaoPosto) {
 		this.id = id;
+		
 		this.gastoMedio = gastoMedio;
+		
 		this.quantidadeAtual = quantidadeAtual;
+		
 		this.capacidadeTotal = capacidadeTotal;
+		
 		this.nomePosto = nomePosto;
+		
 		this.posicaoPosto = posicaoPosto;
 	}
 
@@ -117,20 +124,37 @@ public class Posto {
 	 */
 	public boolean temPedidoPendente() {
 		// TODO ZFEITO fazer este método
-        return percentagemOcupacao() < OCUPACAO_MINIMA && Math.random() < PROBABILIDADE_NOVO_PEDIDO;
+
+      /*  return (percentagemOcupacao() < OCUPACAO_MINIMA || Math.random() < PROBABILIDADE_NOVO_PEDIDO);*/
+      	return pedidoPendente;
+      
     }
 
 	/** Laborar do posto. O posto processa os gastos e verifica
 	 * se precisa de realizar um pedido de abastecimento
 	 */
 	public void laborar() {
+	
 		// TODO ZFEITO fazer este método
-		setQuantidadeAtual(quantidadeAtual-getGastoMedio());
+	
+	/*	setQuantidadeAtual(quantidadeAtual-getGastoMedio());
 
 		if(!temPedidoPendente())
-			laborar();
+			laborar();*/
+			
+		if(percentagemOcupacao() < OCUPACAO_SUFICIENTE){
+			if(percentagemOcupacao() < OCUPACAO_MINIMA){
+				pedidoPendente = true;
+			} else {
+				Random random = new Random();
+				
+				if(random.nextDouble() < PROBABILIDADE_NOVO_PEDIDO){
+					pedidoPendente = true;
+				}
+			}
+			pedidoPendente = false;
+		}
 	}
-
 
 	@Override
 	public boolean equals(Object o) {

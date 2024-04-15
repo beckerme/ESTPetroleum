@@ -23,11 +23,27 @@ public class Camiao {
 
 	Itinerario itinerario;
 
-	public Camiao(String matricula, int capacidade, int velocidade, int debito) {
+	public Camiao(String matricula, int capacidade, int velocidade, int debito, int quantidadeAtual) {
+
 		this.matricula = matricula;
-		this.capacidade = capacidade;
-		this.velocidade = velocidade;
-		this.debito = debito;
+
+		if(capacidade<quantidadeAtual || capacidade<0)
+		this.capacidade = quantidadeAtual;
+	 	else this.capacidade = capacidade;
+
+		if(quantidadeAtual>capacidade || quantidadeAtual<0)
+		this.quantidadeAtual = capacidade;
+		else this.quantidadeAtual = quantidadeAtual;
+
+		if(velocidade<0)
+		this.velocidade = 0;
+		else this.velocidade = velocidade;
+
+		if (debito<0)
+		this.debito = 0;
+		else this.debito = debito;
+
+		this.itinerario = new Itinerario();
 	}
 
 	public String getMatricula() {
@@ -38,6 +54,10 @@ public class Camiao {
 	}
 
 	public void setQuantidadeAtual(int quantidadeAtual) {
+
+		if (quantidadeAtual<0){
+			quantidadeAtual = 0;
+		}
 		this.quantidadeAtual = quantidadeAtual;
 	}
 
@@ -100,7 +120,7 @@ public class Camiao {
 	 */
 	public double duracaoTurno() {
 		// TODO fazer este método
-		return tempoPercorrer(itinerario.getInicio(), itinerario.getParagens().getLast().getPosto().getPosicaoPosto());
+		return tempoPercorrer(itinerario.getInicio(), itinerario.getParagens().get(itinerario.getParagens().size()-1).getPosto().getPosicaoPosto());
 	}
 	
 	/** retorna o tempo, em segundos, que demora a fazer o itinerário
@@ -112,7 +132,7 @@ public class Camiao {
 	public double duracaoTurnoExtra( Posto extra, int nLitros ) {
 		// TODO fazer este método
 
-		return duracaoTurno() + tempoPercorrer(itinerario.getParagens().getLast().getPosto().getPosicaoPosto(),extra.getPosicaoPosto()) + tempoDespejar(nLitros);
+		return duracaoTurno() + tempoPercorrer(itinerario.getInicio(), itinerario.getParagens().get(itinerario.getParagens().size()-1).getPosto().getPosicaoPosto()) + tempoDespejar(nLitros);
 	}
 
 	/** Efetua o transporte e transferência de combustível
@@ -134,7 +154,7 @@ public class Camiao {
 	 */
 	private double tempoPercorrer( Point ini, Point fim ){
 		// TODO terminar este método (distância / velocidade)
-		return Mapa.distancia(ini, fim)/this.velocidade;
+		return (Mapa.distancia(ini, fim)/this.velocidade)*3600;
 	}
 	
 	/** retorna quanto tempo demora, em segundos, a transferir a quantidade de liquido
@@ -151,7 +171,7 @@ public class Camiao {
 	 */
 	public float percentagemOcupacao() {
 		// TODO ZFEITO fazer este método
-		return (float)(this.quantidadeAtual/100.0);
+		return ((float)this.quantidadeAtual/this.capacidade);
 	}
 	
 	/** retorna a capacidade livre, isto é, quantos litros ainda pode

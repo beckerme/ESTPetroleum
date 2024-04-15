@@ -25,8 +25,8 @@ public class Central {
 
 	private Point posicaoCentral;
 
-	private List<Posto> postos = new ArrayList<>();
-	private  List<Camiao> camioes = new ArrayList<>();
+	private Map<String,Camiao> camioes = new HashMap<String,Camiao>();
+    private Map<Integer,Posto> postos = new HashMap<Integer,Posto>();
 
 	public Central(){
 		this.posicaoCentral = new Point(505, 750);
@@ -41,9 +41,9 @@ public class Central {
 		// TODO fazer este método
 
 		// ciclo for each para todos os camioes
-		for(Camiao camiao : camioes ){
+		for(Camiao camiao : camioes.values() ){
 			if(camiao.getMatricula().equals(matricula)){
-				
+
 				return camiao;
 			}
 		}
@@ -59,20 +59,20 @@ public class Central {
 		return postos.get(id);
 	}
 
-	public List<Posto> getPostos() {
-		return Collections.unmodifiableList(postos);
+	public Collection<Posto> getPostos() {
+		return Collections.unmodifiableCollection(postos.values());
 	}
 
-	public List<Camiao> getCamioes(){
-		return Collections.unmodifiableList(camioes);
+	public Collection<Camiao> getCamioes(){
+		return Collections.unmodifiableCollection(camioes.values());
 	}
 
 	public void adicionarPosto(Posto posto) {
-		postos.add(posto);
+		postos.put(posto.getId(),posto);
 	}
 
-	public void adicionarCamiao(Camiao camioes){
-		this.camioes.add(camioes);
+	public void adicionarCamiao(Camiao camiao){
+		camioes.put(camiao.getMatricula(), camiao);
 	}
 
 	/** processa uma entrega, isto é, associa o pedido ao camião respetivo
@@ -88,6 +88,9 @@ public class Central {
 	 */
 	public int processarEntrega(Posto posto, int litros, Camiao camiao) {
 		// TODO fazer este método
+
+
+
 		return ACEITE;
 	}
 
