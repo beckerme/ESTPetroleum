@@ -3,9 +3,7 @@ import java.awt.Point;
 
 import menu.Mapa;
 import menu.JanelaControlo;
-import petroleum.Camiao;
-import petroleum.Central;
-import petroleum.Posto;
+import petroleum.*;
 
 /** Responsável por cria o ambiente de execução e criar a janela */
 public class Main {
@@ -60,15 +58,18 @@ public class Main {
 
 		// TODO criar os camiões
 
-		Camiao camiao1 = new Camiao("11-FG-33", 20000, 65, 20,20000);
-		Camiao camiao2 = new Camiao("22-DV-22", 30000, 50, 30,30000);
-		Camiao camiao3 = new Camiao("AA-34-BB", 35000, 70, 30,35000);
-		Camiao camiao4 = new Camiao("CF-65-FC", 40000, 45, 40,35000);
-		// Camiao camiaoNosso = new Camiao("11-FG-33", 20000, 65, 20);
+		Camiao camiao1 = new Camiao("11-FG-33", 20000, 65, 20, new Itinerario(c.getPosicaoCentral()));
+		Camiao camiao2 = new Camiao("22-DV-22", 30000, 50, 30, new Itinerario(c.getPosicaoCentral()));
+		Camiao camiao3 = new Camiao("AA-34-BB", 35000, 70, 30, new Itinerario(c.getPosicaoCentral()));
+		Camiao camiao4 = new Camiao("CF-65-FC", 40000, 45, 40, new Itinerario(c.getPosicaoCentral()));
+		Camiao camiaoNosso = new Camiao("MM-30-TS", 20000, 100, 50, new Itinerario(c.getPosicaoCentral()));
+
 		c.adicionarCamiao(camiao1);
 		c.adicionarCamiao(camiao2);
 		c.adicionarCamiao(camiao3);
-		
+		c.adicionarCamiao(camiao4);
+		c.adicionarCamiao(camiaoNosso);
+
 		// criar a apresentar a janela principal
 		JanelaControlo postosFrame = new JanelaControlo( c );
 		postosFrame.setVisible( true );

@@ -17,10 +17,10 @@ public class Itinerario {
 
 	private ArrayList<Paragem> paragens = new ArrayList<Paragem>();
 
-	private Point inicio;	
+	private Point inicio;
 
-	public Itinerario(){
-		this.inicio = new Point(505, 750);
+	public Itinerario(Point inicio){
+		this.inicio = inicio;
 	}
 
 	public List<Paragem> getParagens() {
@@ -31,7 +31,7 @@ public class Itinerario {
 		paragens.add(p);
 	}
 	
-	public void remomveParagens(Paragem p) {
+	public void removeParagens(Paragem p) {
 		paragens.remove(p);
 	}
 
@@ -41,6 +41,10 @@ public class Itinerario {
 	public Point getInicio() {
 		// TODO ZFEITO fazer este método (não usar este valor assim)
 		return this.inicio;
+	}
+
+	public Point getFim() {
+		return paragens.get(paragens.size()-1).getPosto().getPosicaoPosto();
 	}
 
 	/** limpa o itinerário, isto é, remove todas

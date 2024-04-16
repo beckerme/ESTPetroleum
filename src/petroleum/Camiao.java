@@ -19,11 +19,12 @@ public class Camiao {
 	 * (2 condutores), dadas em segundos */
 	public static final int TEMPO_TURNO = 14 * 3600;
 	private String matricula;
-	private int capacidade, velocidade, debito, quantidadeAtual;
+	private int capacidade, velocidade, debito;
+	int quantidadeAtual = 0;
 
 	Itinerario itinerario;
 
-	public Camiao(String matricula, int capacidade, int velocidade, int debito, int quantidadeAtual) {
+	public Camiao(String matricula, int capacidade, int velocidade, int debito, Itinerario itinerario) {
 
 		this.matricula = matricula;
 
@@ -31,9 +32,9 @@ public class Camiao {
 		this.capacidade = quantidadeAtual;
 	 	else this.capacidade = capacidade;
 
-		if(quantidadeAtual>capacidade || quantidadeAtual<0)
+		/*if(quantidadeAtual>capacidade || quantidadeAtual<0)
 		this.quantidadeAtual = capacidade;
-		else this.quantidadeAtual = quantidadeAtual;
+		else this.quantidadeAtual = quantidadeAtual;*/
 
 		if(velocidade<0)
 		this.velocidade = 0;
@@ -43,7 +44,7 @@ public class Camiao {
 		this.debito = 0;
 		else this.debito = debito;
 
-		this.itinerario = new Itinerario();
+		this.itinerario = itinerario;
 	}
 
 	public String getMatricula() {
@@ -88,10 +89,22 @@ public class Camiao {
 	 */
 	public int podeFazerPedido(Posto posto, int litros) {
 		// TODO implementar este método
+		/* //CODIGO ANTIGO
+
 		if(litros>getQuantidadeAtual()){
 			return Central.EXCEDE_CAPACIDADE_CAMIAO;
 
 		} else if ((duracaoTurno()<tempoPercorrer(itinerario.getInicio(),posto.getPosicaoPosto()))){
+			return Central.EXCEDE_TEMPO_TURNO;
+		}*/
+
+		if(capacidade < litros || litros > capacidadeLivre()){
+			return Central.EXCEDE_CAPACIDADE_CAMIAO;
+		}
+
+		double adicionalT = tempoDespejar(litros) + tempoPercorrer(itinerario.getInicio(),posto.getPosicaoPosto());
+
+		if(duracaoTurno() + adicionalT > TEMPO_TURNO){
 			return Central.EXCEDE_TEMPO_TURNO;
 		}
 
@@ -119,8 +132,25 @@ public class Camiao {
 	 * @return o tempo, em segundos, que demora a fazer o itinerário 
 	 */
 	public double duracaoTurno() {
-		// TODO fazer este método
-		return tempoPercorrer(itinerario.getInicio(), itinerario.getParagens().get(itinerario.getParagens().size()-1).getPosto().getPosicaoPosto());
+		// TODO ZFEITO fazer este método
+		/*double tempo = 0;
+		Point anterior = itinerario.getInicio();
+
+		for(Paragem paragem : itinerario.getParagens()){
+			Posto atual = paragem.getPosto();
+			Point pontoAtual = atual.getPosicaoPosto();
+
+			tempo += tempoPercorrer(anterior, pontoAtual);
+
+			if(tempo > TEMPO_TURNO){
+				return TEMPO_TURNO;
+			}
+
+			anterior = pontoAtual;
+		}
+
+		return tempo;*/
+		return tempoPercorrer(itinerario.getInicio(), itinerario.getFim());
 	}
 	
 	/** retorna o tempo, em segundos, que demora a fazer o itinerário
@@ -130,20 +160,22 @@ public class Camiao {
 	 * @return tempo, em segundos, que demora a fazer o itinerário mais o posto extra
 	 */
 	public double duracaoTurnoExtra( Posto extra, int nLitros ) {
-		// TODO fazer este método
+		// TODO ZFEITO fazer este método
 
-		return duracaoTurno() + tempoPercorrer(itinerario.getInicio(), itinerario.getParagens().get(itinerario.getParagens().size()-1).getPosto().getPosicaoPosto()) + tempoDespejar(nLitros);
+		return duracaoTurno() + tempoPercorrer(itinerario.getInicio(), itinerario.getFim()) + tempoDespejar(nLitros);
 	}
 
 	/** Efetua o transporte e transferência de combustível
 	 * para todos os postos no itinerário
 	 */
-	public void transporta( ){
+	public void transporta(){
 		// TODO ZFEITO fazer este método
 		for(Paragem p: itinerario.getParagens()){
 			Posto pos = p.getPosto();
 			pos.enche(p.getnLitros());
+			quantidadeAtual-= p.getnLitros();
 		}
+		itinerario.limpar();
 	}
 
 	/** retorna o tempo, em segundos, que demora a percorrer o caminho entre

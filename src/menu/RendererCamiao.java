@@ -68,8 +68,8 @@ public class RendererCamiao implements ListCellRenderer<Camiao> {
 		int velocidadeMedia = camiao.getVelocidade();
 		float percentOcupacao = camiao.percentagemOcupacao();
 		// duraçao do turno em horas e minutos
-		int duracaoHoras = (int)(camiao.duracaoTurno()/3600);
-		int duracaoMinutos = (int) ((camiao.duracaoTurno()%3600)/60);
+		int duracaoHoras = 0; // (int)(camiao.duracaoTurno()/3600);
+		int duracaoMinutos = 0; //(int) ((camiao.duracaoTurno()%3600)/60);
 		
 		// apresentar as infos
 		int numPixeis = (int)(percentOcupacao * PIXEIS_TANQUE);

@@ -124,10 +124,8 @@ public class Posto {
 	 */
 	public boolean temPedidoPendente() {
 		// TODO ZFEITO fazer este método
-
       /*  return (percentagemOcupacao() < OCUPACAO_MINIMA || Math.random() < PROBABILIDADE_NOVO_PEDIDO);*/
       	return pedidoPendente;
-      
     }
 
 	/** Laborar do posto. O posto processa os gastos e verifica

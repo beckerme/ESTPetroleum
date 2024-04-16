@@ -32,7 +32,6 @@ public class Central {
 		this.posicaoCentral = new Point(505, 750);
 	}
 
-
 	/** retorna o camião associado a uma matricula
 	 * @param matricula matrícula a pesquisar matricula
 	 * @return o camião com a matrícula indicada, ou null se não existir
@@ -43,7 +42,6 @@ public class Central {
 		// ciclo for each para todos os camioes
 		for(Camiao camiao : camioes.values() ){
 			if(camiao.getMatricula().equals(matricula)){
-
 				return camiao;
 			}
 		}
@@ -89,9 +87,16 @@ public class Central {
 	public int processarEntrega(Posto posto, int litros, Camiao camiao) {
 		// TODO fazer este método
 
+		if(camiao.podeFazerPedido(posto, litros) != Central.ACEITE){
+			return camiao.podeFazerPedido(posto, litros);
+		}
 
+		if(posto.enche(litros) != Central.ACEITE){
+			return posto.enche(litros);
+		}
 
-		return ACEITE;
+		camiao.addPosto(posto, litros);
+		return Central.ACEITE;
 	}
 
 	
@@ -107,13 +112,19 @@ public class Central {
 	 * transportar o combústivel para os postos adjudicados 
 	 */
 	private void realizarItinerarios() {
-		// TODO fazer este método
+		// TODO ZFEITO fazer este método
+		for(Camiao camiao: camioes.values()){
+			camiao.transporta();
+		}	
 	}
 	
 	/** processa os gastos dos postos
 	 */
 	private void processarGastosPostos() {
-		// TODO fazer este método
+		// TODO ZFEITO fazer este método
+		for(Posto p: postos.values()){
+			p.laborar();
+		}
 	}
 
 	public Point getPosicaoCentral() {
