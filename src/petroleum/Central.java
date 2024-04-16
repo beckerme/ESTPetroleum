@@ -107,9 +107,9 @@ public class Central {
 			return camiao.podeFazerPedido(posto, litros);
 		}
 
-		if (posto.enche(litros) != Central.ACEITE) {
-			return posto.enche(litros);
-		}
+		/*if (posto.enche(litros) != Central.ACEITE) { // TODO este metodo esta causando conflito no codigo, pois muda o estado da logo antes de premir o botao para ir para o proximo turno
+			return posto.enche(litros); // se ir para o proximo turno ele nao muda o estado do posto.
+		}*/
 
 		camiao.addPosto(posto, litros);
 		return Central.ACEITE;

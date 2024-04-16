@@ -45,8 +45,14 @@ public class Posto {
 		this.posicaoPosto = posicaoPosto;
 	}
 
+	public void setPedidoPendente(boolean pedidoPendente) {
+		this.pedidoPendente = pedidoPendente;
+	}
+
 	/**Getters e Setters da classe
 	 * */
+
+
 	public int getId() {
 		return id;
 	}
@@ -84,6 +90,7 @@ public class Posto {
 	public int enche( int nLitros ){
 		// TODO ZFEITO fazer este método
 		if(temPedidoPendente()) {
+			setQuantidadeAtual(quantidadeAtual+nLitros);
 			return Central.ACEITE;
 		}
 		return Central.POSTO_NAO_PRECISA;
@@ -138,9 +145,25 @@ public class Posto {
 
 		setQuantidadeAtual(quantidadeAtual-getGastoMedio());
 
+	/*	setQuantidadeAtual(quantidadeAtual-getGastoMedio());
 		if(!temPedidoPendente())
 			laborar();
+			laborar();*/
 
+	/*	if(percentagemOcupacao() < OCUPACAO_SUFICIENTE) {
+			if (percentagemOcupacao() < OCUPACAO_MINIMA) {
+				pedidoPendente = true;
+			} else {
+				Random random = new Random();
+
+				if (random.nextDouble() < PROBABILIDADE_NOVO_PEDIDO) {
+					pedidoPendente = true;
+				}
+			}
+			pedidoPendente = false;
+		}*/
+
+		temPedidoPendente();
 
 	}
 

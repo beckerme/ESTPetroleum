@@ -184,6 +184,7 @@ public class Camiao {
 		
 		for (Paragem p : itinerario.getParagens()) {
 			Posto pos = p.getPosto();
+			pos.setPedidoPendente(true);
 			pos.enche(p.getnLitros());
 			quantidadeAtual -= p.getnLitros();
 		}
