@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.TitledBorder;
 
-import petroleum.Camiao;
+import transportes.Camiao;
 
 /** Renderer usado para apresentar as informações de um camião na lista de camiões
  */

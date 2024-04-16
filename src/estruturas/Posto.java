@@ -1,4 +1,4 @@
-package petroleum;
+package estruturas;
 
 import java.awt.*;
 import java.util.*;
@@ -89,11 +89,25 @@ public class Posto {
 	 */
 	public int enche( int nLitros ){
 		// TODO ZFEITO fazer este método
+
 		if(temPedidoPendente()) {
+
+		if(podeEncher(nLitros)== Central.ACEITE){
 			setQuantidadeAtual(quantidadeAtual+nLitros);
-			return Central.ACEITE;
+		}
+
+		return podeEncher(nLitros);
 		}
 		return Central.POSTO_NAO_PRECISA;
+	}
+
+	public int podeEncher (int nLitros){
+
+		if((getQuantidadeAtual()+nLitros)<getCapacidadeTotal()){
+
+				return Central.ACEITE;
+			}
+			else return  Central.EXCEDE_CAPACIDADE_POSTO;
 	}
 
 	/** retorna a capacidade livre, isto é, quantos
@@ -121,8 +135,8 @@ public class Posto {
 		/*  return (percentagemOcupacao() < OCUPACAO_MINIMA || Math.random() < PROBABILIDADE_NOVO_PEDIDO);*/
 		//      	return pedidoPendente;
 		if(percentagemOcupacao() < OCUPACAO_SUFICIENTE){
-			if(percentagemOcupacao() < OCUPACAO_MINIMA ){
-				return pedidoPendente = true;
+			if(percentagemOcupacao() < OCUPACAO_MINIMA ){ // TODO <= ou só '<'. perguntar sobre posto 'Minas'.
+				return pedidoPendente = true; // estruturas -> central, posto, percurso -> itinerario
 			} else {
 				
 				double aleatorio = Math.random(); 

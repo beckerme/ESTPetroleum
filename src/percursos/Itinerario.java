@@ -1,4 +1,4 @@
-package petroleum;
+package percursos;
 
 import java.awt.Point;
 import java.util.*;

@@ -1,4 +1,6 @@
-package petroleum;
+package percursos;
+
+import estruturas.*;
 
 /**
  * Uma paragem do itinerário deve indicar
@@ -12,8 +14,9 @@ public class Paragem {
 
     public Paragem(Posto posto, int nLitros) {
 
+		// TODO ZFEITO fazer validações aqui
         if(nLitros > 0){
-            this.nLitros = nLitros; // TODO fazer validações aqui
+            this.nLitros = nLitros; 
         }
 
         if(posto != null){

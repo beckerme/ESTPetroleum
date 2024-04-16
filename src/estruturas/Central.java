@@ -1,4 +1,6 @@
-package petroleum;
+package estruturas;
+
+import transportes.*;
 
 import java.awt.*;
 import java.util.*;
@@ -107,9 +109,13 @@ public class Central {
 			return camiao.podeFazerPedido(posto, litros);
 		}
 
-		/*if (posto.enche(litros) != Central.ACEITE) { // TODO este metodo esta causando conflito no codigo, pois muda o estado da logo antes de premir o botao para ir para o proximo turno
-			return posto.enche(litros); // se ir para o proximo turno ele nao muda o estado do posto.
-		}*/
+		if(!posto.temPedidoPendente()){
+			return Central.POSTO_NAO_PRECISA;
+		}
+
+		if (posto.podeEncher(litros) != Central.ACEITE) { // TODO este metodo esta causando conflito no codigo, pois muda o estado da logo antes de premir o botao para ir para o proximo turno
+			return posto.podeEncher(litros); // se ir para o proximo turno ele nao muda o estado do posto.
+		}
 
 		camiao.addPosto(posto, litros);
 		return Central.ACEITE;

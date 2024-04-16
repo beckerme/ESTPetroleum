@@ -1,9 +1,11 @@
-package petroleum;
+package transportes;
 
 import java.awt.Point;
 import java.util.*;
 
+import estruturas.*;
 import menu.Mapa;
+import percursos.*;
 
 /**
  * Esta classe representa um camião, que, neste contexto, se refere à capacidade

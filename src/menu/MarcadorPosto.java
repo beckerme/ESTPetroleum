@@ -5,11 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.*;
 
 import javax.swing.ImageIcon;
 
-import petroleum.Posto;
+import estruturas.Posto;
 
 /** Representa um marcador no mapa que representa um posto.
  * Foenece indicações visuais de como está o posto, se tem algum pedido,
@@ -92,6 +91,7 @@ public class MarcadorPosto {
 		icon.paintIcon(null, g, area.x, area.y);
 		
 		// TODO ZFEITO ver se posto tem pedido pendente
+		System.out.println(percentagemOcupacao);
 		if( posto.temPedidoPendente() )
 			pedindo.paintIcon(null, g, area.x, area.y);
 	}
