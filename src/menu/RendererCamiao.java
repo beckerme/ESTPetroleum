@@ -31,6 +31,9 @@ public class RendererCamiao implements ListCellRenderer<Camiao> {
 	// cor a usar para indicar que o camião NÃO está selecionado (usar a do sistema)
 	private Color naoSelColor; 
 
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// Construtor
 	
 	public RendererCamiao(  ) {
 		Dimension size = new Dimension( camiaoIcon.getIconWidth(), camiaoIcon.getIconHeight() );
@@ -51,12 +54,20 @@ public class RendererCamiao implements ListCellRenderer<Camiao> {
 		painel.setBorder( new TitledBorder( "121212" ) );
 	}
 	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	// Setters
+	
 	/** define qual o caimão a usar
 	 * @param camiao o camião a usar
 	 */
 	public void setCamiao(Camiao camiao) {
 		this.camiao = camiao;
 	}
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// Metodos
 	
 	/** desenha a informação no painel de desenho
 	 * @param g ambiente onde desenhar

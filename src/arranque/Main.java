@@ -43,8 +43,8 @@ public class Main {
 		c.adicionarCamiao(new Camiao("CF-65-FC", 40000, 45, 40, new Itinerario(c.getPosicaoCentral())));
 		c.adicionarCamiao(new Camiao("MM-30-TS", 50000, 100, 50, new Itinerario(c.getPosicaoCentral())));
 
-		// criar a apresentar a janela principal
-		JanelaControlo postosFrame = new JanelaControlo( c );
+		// criar e apresentar a janela principal
+		JanelaControlo postosFrame = new JanelaControlo(c);
 		postosFrame.setVisible( true );
 	}
 

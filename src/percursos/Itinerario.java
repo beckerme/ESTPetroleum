@@ -9,15 +9,22 @@ import java.util.*;
  * no final, deve retornar sempre ao local de início.
  */
 public class Itinerario {
-
+	
+	
+	// Variaveis e estruturas do Itinerario
 	private ArrayList<Paragem> paragens = new ArrayList<Paragem>();
 
 	private Point inicio;
 
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// Construtor do Itinerario
 	public Itinerario(Point inicio) {
 		this.inicio = inicio;
 	}
 
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
 	public List<Paragem> getParagens() {
 		return Collections.unmodifiableList(paragens);
 	}

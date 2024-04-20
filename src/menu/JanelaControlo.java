@@ -37,6 +37,8 @@ import transportes.*;
 @SuppressWarnings("serial")
 public class JanelaControlo extends JFrame {
 
+	// Variaveis, Objetos e Estruturas
+	
 	private Central central; // central do sistema
 	private Camiao camiaoSel; // camião atualmente selecionado
 
@@ -65,6 +67,10 @@ public class JanelaControlo extends JFrame {
 	private static final Composite alphaMeio = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 	private static final Composite alphaFull = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f);
 
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// Construtor 
+	
 	/**
 	 * Cria a janela para uma dada central
 	 * 
@@ -80,10 +86,13 @@ public class JanelaControlo extends JFrame {
 			// TODO ZFEITO adicionar o marcador à lista e descomentar a linha seguinte
 			marcadores.add(mp);
 		}
-
 		inicializarInterface();
 	}
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	// Metodos
+	
 	/**
 	 * desenha os marcadores de postos
 	 * 
@@ -123,7 +132,6 @@ public class JanelaControlo extends JFrame {
 			p1 = p2;
 
 		}
-
 		Point p2 = iti.getInicio(); // e acaba no início
 		desenhaLinha(ge, p1, p2);
 		ge.dispose();

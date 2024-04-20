@@ -24,13 +24,20 @@ public class Camiao {
 	 * o tempo máximo de um turno, que são as 14 horas
 	 * (2 condutores), dadas em segundos
 	 */
+	
+	// Variaveis e Objetos do Camiao
+	
 	public static final int TEMPO_TURNO = 14 * 3600;
 	private String matricula;
 	private int capacidade, velocidade, debito;
-	int quantidadeAtual = 0;
+	int quantidadeAtual;
 
 	Itinerario itinerario;
 
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// Construtor
+	
 	public Camiao(String matricula, int capacidade, int velocidade, int debito, Itinerario itinerario) {
 
 		this.matricula = matricula;
@@ -39,12 +46,6 @@ public class Camiao {
 			this.capacidade = quantidadeAtual;
 		else
 			this.capacidade = capacidade;
-
-		/*
-		 * if(quantidadeAtual>capacidade || quantidadeAtual<0)
-		 * this.quantidadeAtual = capacidade;
-		 * else this.quantidadeAtual = quantidadeAtual;
-		 */
 
 		if (velocidade < 0)
 			this.velocidade = 0;
@@ -58,7 +59,11 @@ public class Camiao {
 
 		this.itinerario = itinerario;
 	}
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	// Getters e Setters
+	
 	public String getMatricula() {
 		return matricula;
 	}
@@ -70,7 +75,7 @@ public class Camiao {
 	public void setQuantidadeAtual(int quantidadeAtual) {
 
 		if (quantidadeAtual < 0) {
-			quantidadeAtual = 0;
+			this.quantidadeAtual = 0;
 		}
 		this.quantidadeAtual = quantidadeAtual;
 	}
@@ -90,7 +95,11 @@ public class Camiao {
 	public Itinerario getItinerario() {
 		return itinerario;
 	}
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	// Metodos
+	
 	/**
 	 * indica se o Camião pode acrescentar o seguinte pedido ao seu itinerário
 	 * 
@@ -130,9 +139,13 @@ public class Camiao {
 	public int addPosto(Posto p, int litros) {
 		// TODO ZFEITO fazer este método
 
+		if(litros<0) {
+			litros=0;
+		}
+
 		if (podeFazerPedido(p, litros) == Central.ACEITE) {
 			itinerario.addParagens(new Paragem(p, litros));
-		this.quantidadeAtual += litros;
+			this.quantidadeAtual += litros;
 		}
 		return podeFazerPedido(p, litros);
 	}
@@ -174,7 +187,7 @@ public class Camiao {
 	public double duracaoTurnoExtra(Posto extra, int nLitros) {
 		// TODO ZFEITO fazer este método
 
-		return duracaoTurno() + tempoPercorrer(itinerario.getInicio(), itinerario.getFim()) + tempoDespejar(nLitros);
+		return duracaoTurno() + tempoPercorrer(itinerario.getFim(),extra.getPosicaoPosto()) + tempoDespejar(nLitros);
 	}
 
 	/**
@@ -183,11 +196,12 @@ public class Camiao {
 	 */
 	public void transporta() {
 		// TODO ZFEITO fazer este método
-		
+
 		for (Paragem p : itinerario.getParagens()) {
 			Posto pos = p.getPosto();
 			pos.setPedidoPendente(true);
 			pos.enche(p.getnLitros());
+			pos.setPedidoPendente(false);
 			quantidadeAtual -= p.getnLitros();
 		}
 		itinerario.limpar();
@@ -238,7 +252,10 @@ public class Camiao {
 		// TODO ZFEITO fazer este método
 		return this.capacidade - this.quantidadeAtual;
 	}
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	// Equals
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -248,6 +265,8 @@ public class Camiao {
 		return Objects.equals(getMatricula(), camiao.getMatricula());
 	}
 
+	
+	// Hash Code
 	@Override
 	public int hashCode() {
 		return Objects.hash(getMatricula());

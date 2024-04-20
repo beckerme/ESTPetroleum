@@ -15,6 +15,9 @@ import estruturas.Posto;
  * se já está inserido num itinerário, entre outros
  */
 public class MarcadorPosto {
+	
+	// Variaveis e objetos da classe MarcadorPosto
+	
 	/* icones para os vários estados do posto */
 	/** imagem para o posto com muito combustivel */
 	private static ImageIcon postoVerde = new ImageIcon( "icones/posto_verde.png" );
@@ -36,6 +39,8 @@ public class MarcadorPosto {
 	private boolean escolhido = false; // se o amrcador já foi escolhido
 	private boolean expandido = false; // se deve apresentar a etiqueta ou só o marcador
 
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
 	/** Cria um marcador visual para um dado posto 
 	 * @param posto o posto a ser visualizado pelo marcador
 	 */
@@ -48,6 +53,8 @@ public class MarcadorPosto {
 		int offsetY = postoVerde.getIconHeight();
 		area = new Rectangle( pos.x-offsetX, pos.y-offsetY, postoVerde.getIconWidth(), postoVerde.getIconHeight() );
 	}
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	/** desenha o marcador no ambiente gráfico
 	 * @param g ambiente onde desenhar o posto
@@ -91,10 +98,11 @@ public class MarcadorPosto {
 		icon.paintIcon(null, g, area.x, area.y);
 		
 		// TODO ZFEITO ver se posto tem pedido pendente
-		System.out.println(percentagemOcupacao);
 		if( posto.temPedidoPendente() )
 			pedindo.paintIcon(null, g, area.x, area.y);
 	}
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 	/** define se o marcador deve ser visto expandido ou compacto 
 	 * @param expandido true para expandir o marcador

@@ -11,6 +11,11 @@ import java.util.*;
  * É ainda responsável por controlar todos os elemenots e operações
  */
 public class Central {
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// Variáveis e Constantes da Class Central
+	
 	// constantes para os erros que podem surgir durante a realização das operações
 	/** Correu tudo bem com a operação */
 	public static final int ACEITE = 0;
@@ -38,7 +43,10 @@ public class Central {
 
 	private Map<String, Camiao> camioes = new HashMap<String, Camiao>();
 	private Map<Integer, Posto> postos = new HashMap<Integer, Posto>();
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------0
 
+	// Construtor da Central
 	public Central() {
 		this.posicaoCentral = new Point(505, 750);
 	}
@@ -49,8 +57,13 @@ public class Central {
 	 * @param matricula matrícula a pesquisar matricula
 	 * @return o camião com a matrícula indicada, ou null se não existir
 	 */
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	// Getters e Setters
+	
 	public Camiao getCamiao(String matricula) {
-		// TODO fazer este método
+		// TODO ZFEITO fazer este método
 
 		// ciclo for each para todos os camioes
 		for (Camiao camiao : camioes.values()) {
@@ -68,7 +81,7 @@ public class Central {
 	 * @return o posto com o id, ou null se não existir
 	 */
 	public Posto getPosto(int id) {
-		// TODO fazer este método
+		// TODO ZFEITO fazer este método
 		return postos.get(id);
 	}
 
@@ -87,7 +100,15 @@ public class Central {
 	public void adicionarCamiao(Camiao camiao) {
 		camioes.put(camiao.getMatricula(), camiao);
 	}
+	
+	public Point getPosicaoCentral() {
+		return this.posicaoCentral;
+	}
+	
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	// Metodos
+	
 	/**
 	 * processa uma entrega, isto é, associa o pedido ao camião respetivo
 	 * 
@@ -109,12 +130,12 @@ public class Central {
 			return camiao.podeFazerPedido(posto, litros);
 		}
 
-		if(!posto.temPedidoPendente()){
+		if(posto.percentagemOcupacao()>Posto.OCUPACAO_SUFICIENTE){
 			return Central.POSTO_NAO_PRECISA;
 		}
 
-		if (posto.podeEncher(litros) != Central.ACEITE) { // TODO este metodo esta causando conflito no codigo, pois muda o estado da logo antes de premir o botao para ir para o proximo turno
-			return posto.podeEncher(litros); // se ir para o proximo turno ele nao muda o estado do posto.
+		if (posto.podeEncher(litros) != Central.ACEITE) { 
+			return posto.podeEncher(litros);
 		}
 
 		camiao.addPosto(posto, litros);
@@ -151,7 +172,4 @@ public class Central {
 		}
 	}
 
-	public Point getPosicaoCentral() {
-		return this.posicaoCentral;
-	}
 }
